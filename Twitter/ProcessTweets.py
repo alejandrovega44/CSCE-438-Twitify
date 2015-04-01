@@ -3,6 +3,9 @@
 #encoding=utf-8
 
 # ********************************************PLEASE READ*************************************************************** 
+# Twitter search limit is 180 tweets per 15 min interval. Max number of tweets we can retrieve per request is 100 
+# Used spaces to format code 
+# In order to run this code, you will need to download the Tweepy package
 
 #***********************************************************************************************************************
 
