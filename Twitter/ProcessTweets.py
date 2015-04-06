@@ -8,7 +8,6 @@
 # In order to run this code, you will need to download the Tweepy package
 
 #***********************************************************************************************************************
-
 import tweepy
 import time
 import sys
@@ -54,18 +53,28 @@ class TwitterCrawler():
             tweetText = content['text']
             tweetText.encode('ascii', 'ignore')
             tweetList.append(tweetText)
-        print tweetList
-	
-	#tokenizes extracted tweets 	
-    def tokenize(self, tweetList):
-        tokenList = []
-		#tokenizing tweets for the each query 
-        for tweets in query_tweets:
-            tweet = tweets.lower()
-            tokens = re.findall(r"[\w']+",tweet)
-            for words in tokens:
-				tokenList.append(words)
-        return tokenList
+        self.parseTweets(tweetList)
+		
+    def parseTweets(self, tweetList):
+		#Data is taken in the following form "text...." (song name - artist)#playlistname #TAMUTwitify
+		#Playlistname will always be the first hastag
+		#Assumes that song name is first followed by artist 
+        spotifyData = []
+        for tweet in tweetList:
+            found = re.search('\\((.+?)\\)', tweet)
+            if found:
+                songInfo = found.group(1)
+                songInfo.replace('-','').split()
+                parsedInfo = re.split(r'-',songInfo)				
+                songName = parsedInfo[0]
+                songArtist = parsedInfo[1]
+                parsedHashTags = tweet.split("#")
+                playlistName = parsedHashTags[1]
+                info = songName + " " + songArtist + " " + playlistName
+                spotifyData.append(info)
+		#return song name , song's Artist, Playlist's Name 
+        return spotifyData
+		
 
 def main():
 
