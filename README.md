@@ -19,9 +19,16 @@ Steps:
 3) In the Web directory download the code from git with the following line: 
 
 		sudo git clone https://github.com/alejandrovega44/CSCE-438-Twitify
+		
+4) Change the current directory to CSCE-438-Twitify/Twitify and enter the following lines:
 
-4) In the far left of your koding session, click on koding-vm-x and click on you assinged urls. Enter the following url:
+	sudo chmod +x Twitify.py 
+	sudo chmod +x playlist.py 
+	
+5) Open Twitify.py and enter your Twitter API auth tokens 
+
+6) In the far left of your koding session, click on koding-vm-x and click on you assinged urls. Enter the following url:
 			
 		http://"Your Assigned Url"/CSCE-438-Twitify/Twitify/
 
-5) Play around with it
+6) Play around with it
