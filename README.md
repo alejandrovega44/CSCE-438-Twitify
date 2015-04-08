@@ -8,11 +8,15 @@ In order to run this code, Koding.com was used. The following steps are specific
 
 Steps:
 
-1) From the Koding terminal enter the following line: 
-		sudo -H  pip install requests==2.5.3 (this downloads an older version of ubuntu) 
+1) From the Koding terminal enter the following line:
+ 
+		sudo -H  pip install requests==2.5.3 
+		
+   this downloads an older version of ubuntu
 
 2) Change the current directory to Web and download packages tweepy.py and spotipy.py. From the terminal enter: 
-				sudo -H pip install tweepy.py 
+
+		sudo -H pip install tweepy.py 
    
    and the same with spotipy.py (If you have not downloaded pip use the following line: sudo apt-get install python-pip)
    
@@ -22,8 +26,8 @@ Steps:
 		
 4) Change the current directory to CSCE-438-Twitify/Twitify and enter the following lines:
 
-	sudo chmod +x Twitify.py 
-	sudo chmod +x playlist.py 
+		sudo chmod +x Twitify.py 
+		sudo chmod +x playlist.py 
 	
 5) Open Twitify.py and enter your Twitter API auth tokens 
 
