@@ -1,0 +1,70 @@
+<html>
+<meta name ="viewpoint" content = "width=device-width, initial-scale = 1.0"> 
+
+<link href  = "css/bootstrap.min.css" rel = "stylesheet">
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ 
+    <body>
+        <div id="test">
+        </div>
+        
+        <div class="row" style="padding-top: 50px">
+			<center> <font size="10"> Twitify </font> </center>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <input type="text" class="form-control text-center" placeholder = "Enter PlayList Name"  name = "PN" > 
+                    <span class="input-group-btn">
+                        <!-- Remove onClick not work as planned -->
+						<button id = "Search" class="btn btn-default" button type="submit"> GO!</button>
+					</span>
+                </div><!-- /input-group -->
+			
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4"></div>
+        </div><!-- /.row -->
+        
+        <script>
+        
+            var hostname = document.location.origin;
+          
+             //on click, sends the user's input (playlist name) to the backend 
+          
+            /*$(function()
+            {
+                $('#Search').click(function(){
+                    
+                    var playlist = document.getElementsByName('PN')[0].value;
+                    $.ajax({
+                        url: hostname + "/Twitify/playlist.py",
+                        type: "post",
+                        datatype:"json",
+                        data: {'name':playlist},
+                        success: function(response){
+                            
+                           
+                            alert(JSON.stringify(response));
+                        }
+                    });
+                });
+            });*/
+            
+                  
+
+       
+       //Displays List of all song info (song name, artist, and playlist name) in list format
+          /* 
+             $(document).ready(function() {
+              $.getJSON(hostname + "/Twitify/Twitify.py", function(data) {
+                  for(i =0; i < data.length; i++)
+                  {
+                    $("#test").append( '<li>' + data[i] + '</li>');
+                  }
+                });
+            });*/
+            
+        </script>
+        
+    </body>
+
+</html>
