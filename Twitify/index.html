@@ -32,7 +32,7 @@
             //this runs the python script (an initiates the twitter crawler and playlist creation)
             $(document).ready(function() {
                 
-                 $.ajax( hostname + "/Twitify/join.py" )
+                 $.ajax( hostname + "/Twitify/Twitify.py" )
                       .done(function() {
                           script_success = 1;
                           
@@ -51,7 +51,7 @@
                     
                     var playlist = document.getElementsByName('PN')[0].value;
                     $.ajax({
-                        url: hostname + "/Twitify/join.py",
+                        url: hostname + "/Twitify/Twitify.py",
                         type: "post",
                         datatype:"json",
                         data: {'name':playlist},
