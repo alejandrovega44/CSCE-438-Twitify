@@ -20,23 +20,25 @@ class TwitterCrawler():
     access_secret = ""
     auth = None
     api = None
+    #test  = []
 
     def __init__(self):
         self.auth = tweepy.OAuthHandler(self.consumer_key, self.consumer_secret)
         self.auth.set_access_token(self.access_key, self.access_secret)
         self.api = tweepy.API(self.auth, parser=tweepy.parsers.JSONParser())
-        #print self.api.rate_limit_status()
 
     def re_init(self):
         self.auth = tweepy.OAuthHandler(self.consumer_key, self.consumer_secret)
         self.auth.set_access_token(self.access_key, self.access_secret)
         self.api = tweepy.API(self.auth, parser=tweepy.parsers.JSONParser())
+        
+        
 
     def search_query(self):
 		#result is a dictionary of size two, we want the dict in results 
         query = "TAMUTwitify"
         tweetList = [] 
-        N = 5
+        N = 1
         #_since_id = retrive latest tweet 
 		#remove result_type since we will use since_id 
 		#each time this code is ran, we need to save the ID of the most recent tweet, and begin our next retrieval with this ID as the starting point 
@@ -66,19 +68,28 @@ class TwitterCrawler():
                 parsedHashTags = tweet.split("#")
                 playlistName = parsedHashTags[1]
                 info = songName + "+" + songArtist + "+" + playlistName
-                spotifyData.append(info)
-              
+                spotifyData.append(info)       
 		#return song name , song's Artist, Playlist's Name 
-        print 
-        print json.dumps(spotifyData)
+		#self.test = spotifyData
         return spotifyData
-		
-
+    
+    def postPlaylist(self):
+        print "\n"
+        print "\n"
+        fs = cgi.FieldStorage()
+        d = {}
+        for k in fs.keys():
+            d[k] = fs.getvalue(k)
+        
+        print json.dumps(d,indent=1)
+        print "\n"
+        sys.stdout.close()
+        
 def main():
 
     tc = TwitterCrawler()
     tc.search_query()
+    tc.postPlaylist()
 	
 if __name__ == "__main__":
     main()
-    

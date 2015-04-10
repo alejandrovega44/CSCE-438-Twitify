@@ -27,16 +27,31 @@
         <script>
         
             var hostname = document.location.origin;
-          
-             //on click, sends the user's input (playlist name) to the backend 
-          
-            /*$(function()
+            var script_sucess = 0;
+            
+            //this runs the python script (an initiates the twitter crawler and playlist creation)
+            $(document).ready(function() {
+                
+                 $.ajax( hostname + "/Twitify/join.py" )
+                      .done(function() {
+                          script_success = 1;
+                          
+                      })
+                      .fail(function() {
+                        alert( "Error: System Failure" );
+                    
+                  });
+            });
+            
+            
+            //on click, sends the user's input (playlist name) to the backend 
+            $(function()
             {
                 $('#Search').click(function(){
                     
                     var playlist = document.getElementsByName('PN')[0].value;
                     $.ajax({
-                        url: hostname + "/Twitify/playlist.py",
+                        url: hostname + "/Twitify/join.py",
                         type: "post",
                         datatype:"json",
                         data: {'name':playlist},
@@ -47,22 +62,9 @@
                         }
                     });
                 });
-            });*/
+            });
             
-                  
 
-       
-       //Displays List of all song info (song name, artist, and playlist name) in list format
-          /* 
-             $(document).ready(function() {
-              $.getJSON(hostname + "/Twitify/Twitify.py", function(data) {
-                  for(i =0; i < data.length; i++)
-                  {
-                    $("#test").append( '<li>' + data[i] + '</li>');
-                  }
-                });
-            });*/
-            
         </script>
         
     </body>
