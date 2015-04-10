@@ -40,4 +40,4 @@ Steps:
 
 
 https://media.readthedocs.org/pdf/spotipy/latest/spotipy.pdf
-
+https://github.com/plamere/spotipy/tree/master/examples
