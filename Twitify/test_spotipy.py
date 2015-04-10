@@ -7,7 +7,7 @@ import pprint
 #export SPOTIPY_CLIENT_ID='c2c2bcc1b5444f90ae9a63968129d160'
 
 #scope = 'user-library-read'
-scope = 'playlist-modify-private'
+scope = 'playlist-modify-public'
 username = 'TamuTwitify'
 
 artist_name = "Chop Suey"
