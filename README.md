@@ -36,3 +36,8 @@ Steps:
 		http://"Your Assigned Url"/CSCE-438-Twitify/Twitify/
 
 6) Play around with it
+
+
+
+https://media.readthedocs.org/pdf/spotipy/latest/spotipy.pdf
+
