@@ -20,7 +20,6 @@ class TwitterCrawler():
     access_secret = ""
     auth = None
     api = None
-    #test  = []
 
     def __init__(self):
         self.auth = tweepy.OAuthHandler(self.consumer_key, self.consumer_secret)
@@ -32,25 +31,41 @@ class TwitterCrawler():
         self.auth.set_access_token(self.access_key, self.access_secret)
         self.api = tweepy.API(self.auth, parser=tweepy.parsers.JSONParser())
         
-        
-
     def search_query(self):
 		#result is a dictionary of size two, we want the dict in results 
         query = "TAMUTwitify"
         tweetList = [] 
-        N = 1
-        #_since_id = retrive latest tweet 
-		#remove result_type since we will use since_id 
-		#each time this code is ran, we need to save the ID of the most recent tweet, and begin our next retrieval with this ID as the starting point 
-        results = self.api.search(q = query, count = N, lang = "en", result_type = "recent" """since_id = _since_id""")
+        tweetIDs = [] 
+        N = 5
+        _since_id = 0 
+        
+        f = open('Latest_Tweet_ID.txt','r')
+        str_SinceID = f.read()
+        _since_id = int(str_SinceID)
+        
+        results = self.api.search(q = query, count = N, lang = "en", since_id = _since_id)
 		#tweet info is packaged with key: statuses, tweetInfo contains a list of tweet info
-        tweetInfo = results["statuses"] 
+        tweetInfo = results["statuses"]
+        
+        if len(tweetInfo) == 0:
+            results = self.api.search(q = query, count = N, lang = "en", result_type = "recent")
+            tweetInfo = results["statuses"]
+            
+        for content in tweetInfo:
+             ID = content['id']
+             tweetIDs.append(ID)
+    
+        f = open('Latest_Tweet_ID.txt','w')
+        f.write(str(tweetIDs[0])) 
+        f.close()
+        
 		#We extract the text for each given tweet 
         for content in tweetInfo:
             tweetText = content['text']
             tweetText.encode('ascii', 'ignore')
             tweetList.append(tweetText)
         self.parseTweets(tweetList)
+        
 		
     def parseTweets(self, tweetList):
 		#Data is taken in the following form "text...." (song name - artist)#playlistname #TAMUTwitify
@@ -70,7 +85,6 @@ class TwitterCrawler():
                 info = songName + "+" + songArtist + "+" + playlistName
                 spotifyData.append(info)       
 		#return song name , song's Artist, Playlist's Name 
-		#self.test = spotifyData
         return spotifyData
     
     def postPlaylist(self):
@@ -81,7 +95,7 @@ class TwitterCrawler():
         for k in fs.keys():
             d[k] = fs.getvalue(k)
         
-        print json.dumps(d,indent=1)
+        print json.dumps(d, indent = 1)
         print "\n"
         sys.stdout.close()
         
