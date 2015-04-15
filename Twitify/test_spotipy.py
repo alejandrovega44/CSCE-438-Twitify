@@ -13,7 +13,7 @@ from random import randint
 import spotipy
 import spotipy.util as util
 
-#print "Content-type: application/json"
+print "Content-type: application/json"
 
 username = 'TamuTwitify'
 _id = []  #track IDs
@@ -61,30 +61,32 @@ class TwitterCrawler():
 			print "could not create playlist"
 
     def add_song_to_playlist(self, title, artist, playlist_name):
-    	print "finding song" , title, artist, playlist_name
+    	print "finding song"
     	#seach for all of artists songs
     	r = sp.search(q= str(artist) + " " +str(title), limit=50)
     	#find the song from the list of songs returned
     	for i, t in enumerate(r['tracks']['items']):
     		print t['name'] +" " + t['id'] 
-    		_id.append(t['id'])
+    		_id.insert(0, t['id'])
     		break;
-		pList_id = self.check_playlist(str(playlist_name))
-		#add song to playlist
+    	print 'checking playlist'
+    	pList_id = self.check_playlist(str(playlist_name))
+    	#add song to playlist
+    	try:
+    		result = sp.user_playlist_add_tracks('tamutwitify', str(pList_id), _id)
+    	except spotipy.SpotifyException:
+    		print 'Could not add song'
+    	
+    	if len(_id) != 0:
+    		_id.pop()
 		
-		try:
-			result = sp.user_playlist_add_tracks('tamutwitify', str(pList_id), _id)
-			return 0
-		except spotipy.SpotifyException:
-			print "could not add song"
-			return 1
-			
+
     def search_query(self):
 		#result is a dictionary of size two, we want the dict in results 
         query = "TAMUTwitify"
         tweetList = [] 
         tweetIDs = [] 
-        N = 2
+        N = 5
         _since_id = 0 
         
         f = open('Latest_Tweet_ID.txt','r')
@@ -112,7 +114,11 @@ class TwitterCrawler():
             tweetText = content['text']
             tweetText.encode('ascii', 'ignore')
             tweetList.append(tweetText)
-        self.parseTweets(tweetList)
+        data = self.parseTweets(tweetList)
+        for info in data:
+        	self.add_song_to_playlist(info[0], info[1], info[2])
+
+        
         
 		
     def parseTweets(self, tweetList):
@@ -130,15 +136,13 @@ class TwitterCrawler():
                 songArtist = parsedInfo[1]
                 parsedHashTags = tweet.split("#")
                 playlistName = parsedHashTags[1]
-                info = songName + "+" + songArtist + "+" + playlistName
+                info = [songName,songArtist, playlistName]
                 spotifyData.append(info)
-                print songName, songArtist, playlistName
-                self.add_song_to_playlist(songName, songArtist, playlistName)
 		#return song name , song's Artist, Playlist's Name 
 		#print spotifyData
         return spotifyData
     
-    '''def postPlaylist(self):
+    def postPlaylist(self):
         print "\n"
         print "\n"
         fs = cgi.FieldStorage()
@@ -149,12 +153,12 @@ class TwitterCrawler():
         print json.dumps(d, indent = 1)
         print "\n"
         sys.stdout.close()
-        '''
+        
 def main():
 
     tc = TwitterCrawler()
     tc.search_query()
-    #tc.postPlaylist()
+    tc.postPlaylist()
 	
 if __name__ == "__main__":
     main()
