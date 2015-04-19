@@ -72,19 +72,25 @@ class TwitterCrawler():
 		#Playlistname will always be the first hastag
 		#Assumes that song name is first followed by artist 
         spotifyData = []
+        f = open('Tweets.txt','a')
         for tweet in tweetList:
             found = re.search('\\((.+?)\\)', tweet)
             if found:
+                f.write(tweet.partition('(')[0] + '\n')
                 songInfo = found.group(1)
                 songInfo.replace('-','').split()
                 parsedInfo = re.split(r'-',songInfo)				
                 songName = parsedInfo[0]
+                f.write(songName + '\n')
                 songArtist = parsedInfo[1]
+                f.write(songArtist + '\n')
                 parsedHashTags = tweet.split("#")
                 playlistName = parsedHashTags[1]
+                f.write(playlistName + '\n\n')
                 info = songName + "+" + songArtist + "+" + playlistName
                 spotifyData.append(info)       
 		#return song name , song's Artist, Playlist's Name 
+        f.close()
         return spotifyData
     
     def postPlaylist(self):
