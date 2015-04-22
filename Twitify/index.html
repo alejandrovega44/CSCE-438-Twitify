@@ -49,7 +49,7 @@
             var availableList =[] 
             
             //this runs the python script (an initiates the twitter crawler and playlist creation)
-            $(document).ready(function() {
+            /*$(document).ready(function() {
                 
                  $.ajax( hostname + "/Twitify/Retrieveplaylist.py")
                       .done(function() {
@@ -60,6 +60,21 @@
                         alert( "Error: System Failure" );
                     
                   });
+            });*/
+            
+            
+             $(document).ready(function() {
+              $.getJSON(hostname + "/Twitify/GenerateDropDown.py", function(data) {
+    
+                 $('#contents').html('');
+                 alert(data);
+                 responseData = JSON.stringify(data);
+                 availableList = eval(responseData);
+                  for(i =0; i < availableList.length; i++)
+                  {
+                    $("#contents").append( '<li id = "' + availableList[i] + '" role="presentation"><a role="menuitem" tabindex="-1">' + availableList[i] +  '</a></li>');
+                  }
+                });
             });
             
             
