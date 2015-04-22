@@ -9,39 +9,40 @@
 
     <body>
     
-    <div id = "AvailablePlaylists" class="dropdown">
-      
-      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-            Available Playlists
-            <span class="caret"></span>
-      </button>
-      
-      <ul id = "contents" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-      </ul>
-      
-</div>
-        
-        <div class="row" style="padding-top: 30px">
-			<center> <font size="10" color="black"> Twitify </font> </center>
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
-                <div class="input-group" >
-                    <input type="text" class="form-control text-center" placeholder = "Enter PlayList Name"  name = "PN" > 
-                    <span class="input-group-btn">
-                        <!-- Remove onClick not work as planned -->
+		<div id = "AvailablePlaylists" class="dropdown">
+		  
+		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+				Available Playlists
+				<span class="caret"></span>
+		  </button>
+		  
+		  <ul id = "contents" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		  </ul>
+		  
+		</div>
+			
+		<div class="row" style="padding-top: 30px; padding-bottom: 20px; background-color:#71C671 ">
+			<center> <font size="7" color="black"> Twitify </font> </center>
+			<div class="col-lg-4"></div>
+			
+			<div class="col-lg-4"></div>
+		</div><!-- /.row -->
+        <div class="col-lg-4"></div>
+		<div class="col-lg-4 col-center-right" >
+				<div class="input-group" >
+					<input type="text" class="form-control text-center" placeholder = "Enter PlayList Name"  name = "PN" > 
+					<span class="input-group-btn">
+						<!-- Remove onClick not work as planned -->
 						<button id = "Search" class="btn btn-default" button type="submit"> GO!</button>
 					</span>
-                </div><!-- /input-group -->
+				</div><!-- /input-group -->
 			
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4"></div>
-        </div><!-- /.row -->
-        
+			</div><!-- /.col-lg-4 -->
         
         <div id="widgetcontainer" style="padding-top: 25px">
         
         </div>
-        
+       
         <script>
         
             var hostname = document.location.origin;
