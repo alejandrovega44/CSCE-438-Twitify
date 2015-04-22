@@ -67,7 +67,6 @@
               $.getJSON(hostname + "/Twitify/GenerateDropDown.py", function(data) {
     
                  $('#contents').html('');
-                 alert(data);
                  responseData = JSON.stringify(data);
                  availableList = eval(responseData);
                   for(i =0; i < availableList.length; i++)
