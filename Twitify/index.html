@@ -2,33 +2,40 @@
 <meta name ="viewpoint" content = "width=device-width, initial-scale = 1.0"> 
 
 <link href  = "css/bootstrap.min.css" rel = "stylesheet">
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> 
  
-
     <body>
     
-		<div id = "AvailablePlaylists" class="dropdown">
-		  
-		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-				Available Playlists
-				<span class="caret"></span>
-		  </button>
-		  
-		  <ul id = "contents" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-		  </ul>
-		  
-		</div>
+		
+        
+        <div class="row" style="padding-top: 0px; background-color:#71C671">
+			<div id = "AvailablePlaylists" class="dropdown">
+			  
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+					Available Playlists
+					<span class="caret"></span>
+			  </button>
+			  
+			  <ul id = "contents" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			  </ul>
+			  
+			</div>
 			
-		<div class="row" style="padding-top: 30px; padding-bottom: 20px; background-color:#71C671 ">
-			<center> <font size="7" color="black"> Twitify </font> </center>
+			<center> <font size="10"> Twitify </font> </center>
+            
 			<div class="col-lg-4"></div>
-			
+            
+		
 			<div class="col-lg-4"></div>
 		</div><!-- /.row -->
-		<div class="col-lg-4 col-center-right" >
-				<div class="input-group" >
+        
+		<div class="row" style="padding-top: 100px">
+
+			<div class="col-lg-4"></div>
+            
+			<div class="col-lg-4">
+				<div class="input-group">
 					<input type="text" class="form-control text-center" placeholder = "Enter PlayList Name"  name = "PN" > 
 					<span class="input-group-btn">
 						<!-- Remove onClick not work as planned -->
@@ -37,11 +44,12 @@
 				</div><!-- /input-group -->
 			
 			</div><!-- /.col-lg-4 -->
+			<div class="col-lg-4"></div>
+		</div><!-- /.row -->
+		
         
-        <div id="widgetcontainer" style="padding-top: 25px">
+		<div id="widgetcontainer" style="padding-top: 25px"> </div>
         
-        </div>
-       
         <script>
         
             var hostname = document.location.origin;
